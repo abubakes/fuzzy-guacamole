@@ -9,8 +9,16 @@ jobs:
     my_first_job:
         name: My first job
         runs-on: ubuntu-latest
+        environment: playground
         steps:
-            - run: echo Hello World!
+        - uses: qoomon/actions--context@v4
+        - run: |
+            echo "Job Id:         ${GITHUB_JOB_ID}"
+            echo "Job Name:       ${GITHUB_JOB_NAME}"
+            echo "Job Log URL:    ${GITHUB_JOB_URL}"
+            echo "Environment:    ${GITHUB_ENVIRONMENT}"
+            echo "Deployment URL: ${GITHUB_DEPLOYMENT_URL}"
+    
         
 
 
