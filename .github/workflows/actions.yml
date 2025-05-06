@@ -7,7 +7,6 @@ on:
 
 jobs:
     my_first_job:
-        name: My first job
         runs-on: ubuntu-latest
         environment: playground
         steps:
