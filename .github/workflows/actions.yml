@@ -1,25 +1,17 @@
-name: Abubakar
+name: Example Workflow
 
-on:
-    push:
-        branches:
-            - main
+on: [push]
 
 jobs:
-    my_first_job:
-        runs-on: ubuntu-latest
-        environment: playground
-        steps:
-        - uses: qoomon/actions--context@v4
-        - run: |
-            echo "Job Id:         ${GITHUB_JOB_ID}"
-            echo "Job Name:       ${GITHUB_JOB_NAME}"
-            echo "Job Log URL:    ${GITHUB_JOB_URL}"
-            echo "Environment:    ${GITHUB_ENVIRONMENT}"
-            echo "Deployment URL: ${GITHUB_DEPLOYMENT_URL}"
-    
-        
+  job-with-name:
+    name: 🛠 Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print message
+        run: echo "This job has a custom name!"
 
-
-
-
+  job-without-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print message
+        run: echo "This job will show its ID as the name"
