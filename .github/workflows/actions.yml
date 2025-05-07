@@ -1,17 +1,35 @@
-name: Example Workflow
+name: Terraform workflow
 
-on: [push]
+on:
+    push:
+        branches:
+            - main
 
 jobs:
-  job-with-name:
-    name: 🛠 Build and Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print message
-        run: echo "This job has a custom name!"
+    my-first-job:
+        name: My first job
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+            
+            - name: Set up Terraform CLI
+              uses: hashicorp/setup-terraform@v3
 
-  job-without-name:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print message
-        run: echo "This job will show its ID as the name"
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+            - name: Terraform Init
+              run: terraform init
+            
+            - name: Terraform Plan
+              run: terraform plan
+
+            - name: Terraform Apply
+              run: terraform apply -auto-approve
+    
+
+
