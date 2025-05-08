@@ -35,8 +35,8 @@ jobs:
             - name: Init TFLint
               run: tflint --init
 
-            - name: Terraform Apply
-              run: terraform apply -auto-approve
+            - name: Run TFLint
+              run: tflint -f compact
 
             
 
