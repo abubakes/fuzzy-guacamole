@@ -32,12 +32,7 @@ jobs:
             - name: Setup TFLint
               uses: terraform-linters/setup-tflint@v4
             
-            - name: Init TFLint
-              run: tflint --init
-
             - name: Run TFLint
               run: tflint -f compact
 
             
-
-
