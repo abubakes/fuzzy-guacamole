@@ -1,7 +1,7 @@
 terraform {
     backend "s3" {
-        bucket = "abus-backend-baby"
-        key = "terraform.tfstate"
+        bucket = "abubakes-newday-backend0"
+        key = "state/terraform.tfstate"
         region = "us-east-1"
     }
 }
