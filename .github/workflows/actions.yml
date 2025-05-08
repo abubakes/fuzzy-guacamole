@@ -23,11 +23,11 @@ jobs:
             - name: Set up Terraform CLI
               uses: hashicorp/setup-terraform@v3
             
-            - name: Terraform Init
-              run: terraform init
+            - name: Terraform Format
+              run: terraform fmt
 
-            - name: Terraform Plan
-              run: terraform plan
+            - name: Terraform Validate
+              run: terraform validate
 
             - name: Setup TFLint
               uses: terraform-linters/setup-tflint@v4
@@ -35,8 +35,10 @@ jobs:
             - name: Run TFLint
               run: tflint -f compact
 
-            - name: Terraform Apply
-              run: terraform apply -auto-approve
-              
+            - name: Run TFSec
+              uses: aquasecurity/tfsec-action@v1.0.0
+              with:
+                soft_fail: true
+
 
             
