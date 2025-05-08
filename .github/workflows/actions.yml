@@ -29,6 +29,12 @@ jobs:
             - name: Terraform Plan
               run: terraform plan
 
+            - name: Setup TFLint
+              uses: terraform-linters/setup-tflint@v4
+            
+            - name: Init TFLint
+              run: tflint --init
+
             - name: Terraform Apply
               run: terraform apply -auto-approve
 
