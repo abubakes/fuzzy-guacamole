@@ -10,7 +10,7 @@ jobs:
     this-is-a-job:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout Repository
+            - name: Checkout Code
               uses: actions/checkout@v4
             
             - name: Configure AWS Credentials
@@ -32,8 +32,8 @@ jobs:
             - name: Terraform Validate
               run: terraform validate
 
-            - name: Run TFSec
-              uses: aquasecurity/tfsec-action@v1.0.0
+            - name: Run Trivy vulnerability scanner
+              uses: aquasecurity/trivy-action@0.28.0
 
             - name: Setup TFLint
               uses: terraform-linters/setup-tflint@v4
