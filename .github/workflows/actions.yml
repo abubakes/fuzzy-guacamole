@@ -36,7 +36,11 @@ jobs:
               uses: aquasecurity/trivy-action@0.30.0
               with:
                 scan-type: 'config'
-                scan-ref: '.'
+                hide-progress: true
+                format: 'sarif'
+                output: 'trivy-results.sarif'
+                exit-code: '1'
+                severity: 'CRITICAL,HIGH'
 
 
             - name: Setup TFLint
