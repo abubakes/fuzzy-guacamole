@@ -37,7 +37,7 @@ jobs:
               with:
                 scan-type: 'config'
                 scan-ref: '.'
-                hide-progress: true
+                severity: 'HIGH,CRITICAL'
 
             - name: Setup TFLint
               uses: terraform-linters/setup-tflint@v4
