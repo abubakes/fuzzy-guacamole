@@ -1,55 +1,50 @@
-name: Abubakar Actions Again
+name: This is a workflow
 
 on:
     push:
         branches:
-            - main
-    workflow_dispatch:
+            main
+    pull_request:
 
 jobs:
     this-is-a-job:
+        name: This is a job
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout Code
+            - name: Checkout code
               uses: actions/checkout@v4
-            
+
             - name: Configure AWS Credentials
               uses: aws-actions/configure-aws-credentials@v4
               with:
                 aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                 aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                 aws-region: "us-east-1"
-            
+
             - name: Set up Terraform CLI
               uses: hashicorp/setup-terraform@v3
-            
-            - name: Terraform Format
-              run: terraform fmt
 
             - name: Terraform Init
               run: terraform init
 
+            - name: Terraform Format
+              run: terraform fmt
+
             - name: Terraform Validate
               run: terraform validate
 
-            - name: Run Trivy vulnerability scanner
+            - name: Run Trivy vulnerability scanner in IaC mode
               uses: aquasecurity/trivy-action@0.28.0
               with:
                 scan-type: 'config'
                 scan-ref: '.'
                 severity: 'HIGH,CRITICAL'
-
+            
             - name: Setup TFLint
               uses: terraform-linters/setup-tflint@v4
-            
+
             - name: Run TFLint
               run: tflint
 
             - name: Terraform Plan
               run: terraform plan
-            
-
-            
-
-
-            
